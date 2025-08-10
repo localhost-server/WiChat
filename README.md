@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="WiChat.png" alt="WiChat Android Logo" width="480">
+    <img src="app/src/main/assets/images/WiChat.png" alt="WiChat Android Logo" width="480">
 </p>
 
 > [!WARNING]
@@ -7,7 +7,7 @@
 
 # WiChat for Android
 
-A secure, decentralized, peer-to-peer messaging app that works over Bluetooth mesh networks. No internet required, no servers, no phone numbers - just pure encrypted communication.
+A secure, decentralized, peer-to-peer messaging app that works over Wi-Fi Direct networks. No internet required, no servers, no phone numbers - just pure encrypted communication.
 
 This is the **Android port** of the original [bitchat iOS app](https://github.com/jackjackbits/bitchat), maintaining 100% protocol compatibility for cross-platform communication.
 
@@ -28,7 +28,7 @@ This project is released into the public domain. See the [LICENSE](LICENSE.md) f
 ## Features
 
 - **✅ Cross-Platform Compatible**: Full protocol compatibility with iOS WiChat
-- **✅ Decentralized Mesh Network**: Automatic peer discovery and multi-hop message relay over Bluetooth LE
+- **✅ Decentralized Mesh Network**: Automatic peer discovery and multi-hop message relay over Wi-Fi Direct
 - **✅ End-to-End Encryption**: X25519 key exchange + AES-256-GCM for private messages
 - **✅ Channel-Based Chats**: Topic-based group messaging with optional password protection
 - **✅ Store & Forward**: Messages cached for offline peers and delivered when they reconnect
@@ -96,13 +96,13 @@ For production releases:
 
 The app requires the following permissions (automatically requested):
 
-- **Bluetooth**: Core BLE functionality
-- **Location**: Required for BLE scanning on Android
+- **Wi-Fi**: Core Wi-Fi Direct functionality
+- **Location**: Required for Wi-Fi scanning on Android
 - **Notifications**: Message alerts and background updates
 
 ### Hardware Requirements
 
-- **Bluetooth LE (BLE)**: Required for mesh networking
+- **Wi-Fi Direct**: Required for mesh networking
 - **Android 8.0+**: API level 26 minimum
 - **RAM**: 2GB recommended for optimal performance
 
@@ -125,7 +125,7 @@ The app requires the following permissions (automatically requested):
 ### Getting Started
 
 1. **Install the app** on your Android device (requires Android 8.0+)
-2. **Grant permissions** for Bluetooth and location when prompted
+2. **Grant permissions** for Wi-Fi and location when prompted
 3. **Launch WiChat** - it will auto-start mesh networking
 4. **Set your nickname** or use the auto-generated one
 5. **Connect automatically** to nearby iOS and Android WiChat users
@@ -187,7 +187,7 @@ The app requires the following permissions (automatically requested):
 ## Technical Architecture
 
 ### Binary Protocol
-WiChat uses an efficient binary protocol optimized for Bluetooth LE:
+WiChat uses an efficient binary protocol optimized for Wi-Fi Direct:
 - Compact packet format with 1-byte type field
 - TTL-based message routing (max 7 hops)
 - Automatic fragmentation for large messages
@@ -213,7 +213,7 @@ WiChat uses an efficient binary protocol optimized for Bluetooth LE:
 1. **WiChatApplication.kt**: Application-level initialization and dependency injection
 2. **MainActivity.kt**: Main activity handling permissions and UI hosting
 3. **ChatViewModel.kt**: MVVM pattern managing app state and business logic
-4. **BluetoothMeshService.kt**: Core BLE mesh networking (central + peripheral roles)
+4. **WifiMeshService.kt**: Core Wi-Fi Direct mesh networking
 5. **EncryptionService.kt**: Cryptographic operations using BouncyCastle
 6. **BinaryProtocol.kt**: Binary packet encoding/decoding matching iOS format
 7. **ChatScreen.kt**: Jetpack Compose UI with Material Design 3
@@ -222,7 +222,6 @@ WiChat uses an efficient binary protocol optimized for Bluetooth LE:
 
 - **Jetpack Compose**: Modern declarative UI
 - **BouncyCastle**: Cryptographic operations (X25519, Ed25519, AES-GCM)
-- **Nordic BLE Library**: Reliable Bluetooth LE operations
 - **Kotlin Coroutines**: Asynchronous programming
 - **LZ4**: Message compression (when enabled)
 - **EncryptedSharedPreferences**: Secure local storage
@@ -233,7 +232,7 @@ The Android implementation maintains 100% binary protocol compatibility with iOS
 - **Header Format**: Identical 13-byte header structure
 - **Packet Types**: Same message types and routing logic
 - **Encryption**: Identical cryptographic algorithms and key exchange
-- **UUIDs**: Same Bluetooth service and characteristic identifiers
+
 - **Fragmentation**: Compatible message fragmentation for large content
 
 ## Publishing to Google Play
